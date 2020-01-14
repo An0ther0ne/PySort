@@ -8,7 +8,8 @@ def sortarray_builtin(A):
 
 # ------------------------------------
 def sortarray_bubble(A):
-	'''Bubble sorting algorithm -- is a simplest of sorting algorithms.\nPerfomance: O(n**2)''' 
+	'''Bubble sorting algorithm -- is a simplest of sorting algorithms.
+		Perfomance: O(n**2)''' 
 	B = np.copy(A)
 	for i in range(len(A)-1):
 		for j in range(i,len(A)):
@@ -18,7 +19,8 @@ def sortarray_bubble(A):
 
 # ------------------------------------	
 def sortarray_insertions(A):	
-	'''Insertion sorting algorithm -- standard realisation\nPerfomance: O(n**2)'''
+	'''Insertion sorting algorithm -- standard realisation
+		Perfomance: O(n**2)'''
 	B = np.copy(A)
 	for i in range(1,len(B)):
 		k = B[i]
@@ -32,8 +34,8 @@ def sortarray_insertions(A):
 # ------------------------------------
 def sortarray_insertions_my(A):	
 	'''Insertion sorting algorithm -- my custom Python-specific realisation
-Perfomance: O(n**2)
-The best performance time among insertions algorithms in python'''
+		Perfomance: O(n**2)
+		The best performance time among insertions algorithms in python'''
 	B = []
 	for i in range(len(A)):
 		k = A[i]
@@ -46,7 +48,8 @@ The best performance time among insertions algorithms in python'''
 
 # -------------------------------------
 def sortarray_gnome(A):
-	'''Gnome sorting algorithm\nPerfomance: O(n**2)'''
+	'''Gnome sorting algorithm
+		Perfomance: O(n**2)'''
 	B = np.copy(A)
 	i,j = 1,2
 	L = len(B)
@@ -86,7 +89,7 @@ def decor_tst_cases(iters=10):
 	# print(iters.__name__, flush=True)
 	def decorator(func):
 		def wrapper(*args, **kwargs):
-			print("Sorting tests : ", end='', flush=True)
+			print("\t\tSorting tests : ", end='', flush=True)
 			ret = True
 			i = 1
 			total = 0
@@ -104,7 +107,7 @@ def decor_tst_cases(iters=10):
 				print(" Passed.")
 			else:
 				print(" Failed!!!")
-			print("\tTime elapsed: {:.3f} seconds.".format(total))
+			print("\t\tTime elapsed: {:.3f} seconds.".format(total))
 			return ret, total,
 		return wrapper
 	return decorator
@@ -119,8 +122,8 @@ sorting_algorithmes = [
 	sortarray_gnome,
 ]
 
-test_iterations = 50
-arraysize       = 250
+test_iterations = 20
+arraysize       = 500
 rnd = np.random.randint(arraysize, size=arraysize)
 
 mintime = test_iterations*arraysize
@@ -129,7 +132,7 @@ for i, SortFunc in enumerate(sorting_algorithmes):
 	if i < 11: case += '0'
 	case += str(i+1)+':'
 	print(case)
-	print(SortFunc.__doc__)
+	print("\t\t"+SortFunc.__doc__)
 	# decorate sorting function:
 	tst_case = decor_tst_cases(test_iterations)(SortFunc)
 	result, timetotal = tst_case(rnd)
@@ -137,6 +140,6 @@ for i, SortFunc in enumerate(sorting_algorithmes):
 		TheBestSortingAlgorithm = SortFunc
 		mintime = timetotal
 	
-print("+++ S U M A R Y +++")
-print("The best sorting algorithm is '"+TheBestSortingAlgorithm.__name__+"()'\nWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
+print("\n+++ S U M A R Y +++")
+print("\t\tThe best sorting algorithm is '"+TheBestSortingAlgorithm.__name__+"()'\n\t\tWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
 
