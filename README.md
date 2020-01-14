@@ -2,6 +2,8 @@
 Testing perfomance of classic sorting algorithms in Python and built in.
 # Synopsis
     python SortTest.py
+# Files:
+[SortTest.py](SortTest.py)
 # Requirements
 * Python 3.x
 * NumPy
