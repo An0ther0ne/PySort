@@ -64,7 +64,26 @@ def sortarray_gnome(A):
 				i = j
 				j = j + 1
 	return B
-
+	
+# -------------------------------------
+def sortarray_cocktail(A):
+	'''Cocktail shaker sorting alogorithm -- improoved bubble sort
+		Perfomance: O(n**2)
+		The sample code was taken from here: https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%88%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC'''
+	B = np.copy(A)
+	left  = 0
+	right = len(B) - 1
+	while left <= right:
+		for i in range(left, right, +1):
+			if B[i] > B[i + 1]:
+				B[i], B[i + 1] = B[i + 1], B[i]
+		right -= 1
+		for i in range(right, left, -1):
+			if B[i - 1] > B[i]:
+				B[i], B[i - 1] = B[i - 1], B[i]
+		left += 1
+	return B
+	
 # ============= Testing functions and decorators 
 def IsSorted(A):
 	for i in range(len(A)-1):
@@ -117,6 +136,7 @@ def decor_tst_cases(iters=10):
 sorting_algorithmes = [
 	sortarray_builtin,
 	sortarray_bubble,
+	sortarray_cocktail,
 	sortarray_insertions,
 	sortarray_insertions_my,
 	sortarray_gnome,
