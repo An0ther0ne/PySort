@@ -83,6 +83,23 @@ def sortarray_cocktail(A):
 				B[i], B[i - 1] = B[i - 1], B[i]
 		left += 1
 	return B
+
+# -------------------------------------
+def sortarray_shell(A):
+	'''Shell sort algorithm -- one of the fastest
+		Author: Donald Lewis Shell
+		Performance: O(nlogn)'''
+	B = np.copy(A)
+	L = len(B)
+	gap = L >> 1
+	while gap > 0:
+		for i in range(gap, L):
+			j = i - gap
+			while (j >= 0) and (B[j] > B[j+gap]):
+				B[j],B[j+gap] = B[j+gap],B[j]
+				j -= gap
+		gap >>= 1
+	return B
 	
 # ============= Testing functions and decorators 
 def IsSorted(A):
@@ -97,11 +114,20 @@ def Randomize(A, iterations=1):
 		return
 	B = np.copy(A)
 	for i in range(iterations):
-		i1 = np.random.randint(L)
-		i2 = i1
+		i2 = i1 = np.random.randint(L)
 		while i2 == i1:
 			i2 = np.random.randint(L)
 		B[i1],B[i2] = B[i2],B[i1]
+	return B
+	
+def RandomizeAll(A):
+	B = np.copy(A)
+	L = len(B)
+	for i in range(L):
+		while True:
+			j = np.random.randint(L)
+			if i != j: break
+		B[i],B[j] = B[j],B[i]
 	return B
 
 def decor_tst_cases(iters=10):
@@ -114,7 +140,8 @@ def decor_tst_cases(iters=10):
 			total = 0
 			while i < iters+1 and ret:
 				print(i, end=',', flush=True)
-				randomized = Randomize(*args, iters)
+				# randomized = RandomizeAll(*args)
+				randomized = Randomize(*args, iterations=iters)
 				start = time.time()
 				sorted = func(randomized, **kwargs)
 				# ret &= IsSorted(func(Randomize(*args, iters),**kwargs))				
@@ -135,6 +162,7 @@ def decor_tst_cases(iters=10):
 
 sorting_algorithmes = [
 	sortarray_builtin,
+	sortarray_shell,
 	sortarray_bubble,
 	sortarray_cocktail,
 	sortarray_insertions,
