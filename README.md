@@ -1,14 +1,14 @@
 # PySort
 Testing perfomance of classic sorting algorithms in Python and built in.
 # Synopsis
-    python [-O] SortTest.py [[-v]||[-V]]
+    python [-O] SortTest.py [[-v]||[-vv]]
 Where:
 * -O   : turn DEBUG flag to off
 * -v   : verbose level 1
 * --vv : verbose level 2
 # Explanation
-This program wrap with decorator each sorting algorithm. 
-Decorator runs the specified number of tests for each sorting algorithm, notice result (passed or not) of it and calcuate total elapsed time for all amount of this tests in this case.
+This program designed for purpose of testing performance and accuracy of various sorting algorithms. 
+We wraps with decorator each of those algorithm. And decorator runs for us the specified number of tests for each sorting algorithm, notice result (passed or not) of it and calcuate total elapsed time for all amount of tests in this case.
 The testing procedure is to check all array elements are sorted in ascending order. Each time after this check an array is randomized again.
 If at least one of test is fail – wrapper skip all following and return the failed state.
 For total time calculation purpose only effective runtime of each successfully completed sorting function counts.
