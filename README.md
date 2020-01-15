@@ -1,5 +1,5 @@
 # PySort
-Testing perfomance of classic sorting algorithms in Python and built in.
+Testing perfomance of classic sorting algorithms in Python.
 # Synopsis
     python [-O] SortTest.py [[-v]||[-vv]]
 Where:
