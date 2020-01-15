@@ -35,21 +35,21 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 		Author: Donald Lewis Shell
 		Performance: O(NlogN)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.080 seconds.
+		Time elapsed: 0.060 seconds.
 
 +++ Case 03:
 
 		Quick sort algorithm -- the fastest, but deep level of recursion needed
 		Performance: O(NlogN), recursion level ~ N
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.020 seconds.
+		Time elapsed: 0.050 seconds.
 
 +++ Case 04:
 
 		Bubble sorting algorithm -- is a simplest of sorting algorithms.
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.260 seconds.
+		Time elapsed: 1.280 seconds.
 
 +++ Case 05:
 
@@ -57,14 +57,14 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 		Perfomance: O(N**2)
 		The sample code was taken from here: https://cutt.ly/qrxDTBr
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.540 seconds.
+		Time elapsed: 1.570 seconds.
 
 +++ Case 06:
 
 		Insertion sorting algorithm -- standard realisation
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.600 seconds.
+		Time elapsed: 0.610 seconds.
 
 +++ Case 07:
 
@@ -72,18 +72,19 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 		Perfomance: O(N**2)
 		The best performance time among insertions algorithms in python
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.140 seconds.
+		Time elapsed: 0.120 seconds.
 
 +++ Case 08:
 
 		Gnome sorting algorithm
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.250 seconds.
+		Time elapsed: 1.260 seconds.
 
 +++ S U M A R Y +++
+
 		The best sorting algorithm is 'sortarray_quick()'
-		With total time=0.020 seconds for array size=500 and 20 iterations.
+		With total time=0.050 seconds for array size=500 and 20 iterations.
 		
 # LINKS
 1. [DONALD E. KNUTH "The Art Of Computer Programming, Volume 3: Sorting and Searching."](https://linuxnasm.be/media/pdf/donald-knuth/taocp/volume-3/taocp-vol3-sorting-searching.pdf)
