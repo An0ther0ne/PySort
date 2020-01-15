@@ -12,49 +12,57 @@ Testing perfomance of classic sorting algorithms in Python and built in.
 
 		This is built in Python sort function
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.002 seconds.
+		Time elapsed: 0.020 seconds.
 
 +++ Case 02:
 
-		Bubble sorting algorithm -- is a simplest of sorting algorithms.
-		Perfomance: O(n**2)
-        	Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.299 seconds.
+		Shell sort algorithm -- one of the fastest
+		Author: Donald Lewis Shell
+		Performance: O(nlogn)
+		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
+		Time elapsed: 0.030 seconds.
 
 +++ Case 03:
+
+		Bubble sorting algorithm -- is a simplest of sorting algorithms.
+		Perfomance: O(n**2)
+		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
+		Time elapsed: 1.280 seconds.
+
++++ Case 04:
 
 		Cocktail shaker sorting alogorithm -- improoved bubble sort
 		Perfomance: O(n**2)
 		The sample code was taken from here: https://cutt.ly/qrxDTBr
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.550 seconds.
+		Time elapsed: 1.540 seconds.
 
-+++ Case 04:
-		
++++ Case 05:
+
 		Insertion sorting algorithm -- standard realisation
 		Perfomance: O(n**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.598 seconds.
+		Time elapsed: 0.610 seconds.
 
-+++ Case 05:
++++ Case 06:
 
 		Insertion sorting algorithm -- my custom Python-specific realisation
 		Perfomance: O(n**2)
 		The best performance time among insertions algorithms in python
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.136 seconds.
+		Time elapsed: 0.130 seconds.
 
-+++ Case 06:
++++ Case 07:
 
 		Gnome sorting algorithm
 		Perfomance: O(n**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.383 seconds.
+		Time elapsed: 1.270 seconds.
 
 +++ S U M A R Y +++
 
 		The best sorting algorithm is 'sortarray_builtin()'
-		With total time=0.002 seconds for array size=500 and 20 iterations.
+		With total time=0.020 seconds for array size=500 and 20 iterations.
 		
 # LINKS
 1. [DONALD E. KNUTH "The Art Of Computer Programming, Volume 3: Sorting and Searching."](https://linuxnasm.be/media/pdf/donald-knuth/taocp/volume-3/taocp-vol3-sorting-searching.pdf)
