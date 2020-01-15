@@ -239,6 +239,6 @@ for i, SortFunc in enumerate(sorting_algorithmes):
 		TheBestSortingAlgorithm = SortFunc
 		mintime = timetotal
 	
-print("\n+++ S U M A R Y +++\n")
+print("\n+++ S U M M A R Y +++\n")
 print("\t\tThe best sorting algorithm is '"+TheBestSortingAlgorithm.__name__+"()'\n\t\tWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
 
