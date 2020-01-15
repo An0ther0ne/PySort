@@ -1,7 +1,22 @@
 import numpy as np
 import time
 
-# ------------------------------------
+# ==================================== Parse command line (only in debug mode)
+if __debug__:
+	import sys
+	print("+++ Debug is ON ! To remove DEBUG assert run this script with -O flag: python -O "+sys.argv[0])
+	__verbose__ = 0	
+	if __verbose__ > 0:
+		print("Verbose level={}".format(__verbose__))
+	if len(sys.argv) > 1:
+		for option in sys.argv:
+			option = option.lower()
+			print("Option={}".format(option))
+			if option == '-vv':
+				__verbose__ = 2
+			elif option == '-v' and __verbose__ == 0:
+				__verbose__ = 1
+# ==================================== Sorting functions
 def sortarray_builtin(A):
 	'''This is built in Python sort function'''
 	return sorted(np.copy(A))
@@ -9,7 +24,7 @@ def sortarray_builtin(A):
 # ------------------------------------
 def sortarray_bubble(A):
 	'''Bubble sorting algorithm -- is a simplest of sorting algorithms.
-		Perfomance: O(n**2)''' 
+		Perfomance: O(N**2)''' 
 	B = np.copy(A)
 	for i in range(len(A)-1):
 		for j in range(i,len(A)):
@@ -20,7 +35,7 @@ def sortarray_bubble(A):
 # ------------------------------------	
 def sortarray_insertions(A):	
 	'''Insertion sorting algorithm -- standard realisation
-		Perfomance: O(n**2)'''
+		Perfomance: O(N**2)'''
 	B = np.copy(A)
 	for i in range(1,len(B)):
 		k = B[i]
@@ -34,7 +49,7 @@ def sortarray_insertions(A):
 # ------------------------------------
 def sortarray_insertions_my(A):	
 	'''Insertion sorting algorithm -- my custom Python-specific realisation
-		Perfomance: O(n**2)
+		Perfomance: O(N**2)
 		The best performance time among insertions algorithms in python'''
 	B = []
 	for i in range(len(A)):
@@ -49,7 +64,7 @@ def sortarray_insertions_my(A):
 # -------------------------------------
 def sortarray_gnome(A):
 	'''Gnome sorting algorithm
-		Perfomance: O(n**2)'''
+		Perfomance: O(N**2)'''
 	B = np.copy(A)
 	i,j = 1,2
 	L = len(B)
@@ -68,7 +83,7 @@ def sortarray_gnome(A):
 # -------------------------------------
 def sortarray_cocktail(A):
 	'''Cocktail shaker sorting alogorithm -- improoved bubble sort
-		Perfomance: O(n**2)
+		Perfomance: O(N**2)
 		The sample code was taken from here: https://cutt.ly/qrxDTBr'''
 	B = np.copy(A)
 	left  = 0
@@ -88,7 +103,7 @@ def sortarray_cocktail(A):
 def sortarray_shell(A):
 	'''Shell sort algorithm -- one of the fastest
 		Author: Donald Lewis Shell
-		Performance: O(nlogn)'''
+		Performance: O(NlogN)'''
 	B = np.copy(A)
 	L = len(B)
 	gap = L >> 1
@@ -99,6 +114,39 @@ def sortarray_shell(A):
 				B[j],B[j+gap] = B[j+gap],B[j]
 				j -= gap
 		gap >>= 1
+	return B
+
+# -------------------------------------
+def sortarray_quick(A):
+	'''Quick sort algorithm -- the fastest, but deep level of recursion needed
+		Performance: O(NlogN), recursion level ~ N'''
+	B = np.copy(A)
+	L = len(B)-1
+	if __debug__: level = 0
+	def quicksort(first, last):
+		if __debug__:
+			nonlocal level
+			level += 1
+			print("+++ debug : RLev={:3}, first={:3}, last={:3}".format(level, first, last)) if __verbose__ > 1 else 0
+		left, right = first, last
+		v = B[(left+right) >> 1]
+		while left < right:
+			while B[left] < v:
+				left += 1
+			while B[right] > v:
+				right -= 1
+			if left <= right:
+				B[left], B[right] = B[right], B[left]
+				left += 1
+				right -= 1
+		if first < right:
+			quicksort(first, right)
+		if left < last:
+			quicksort(left, last)
+		return
+	quicksort(0, L)
+	if __debug__:
+		if __verbose__ > 0: print("Recursion level reached :", level) 
 	return B
 	
 # ============= Testing functions and decorators 
@@ -163,6 +211,7 @@ def decor_tst_cases(iters=10):
 sorting_algorithmes = [
 	sortarray_builtin,
 	sortarray_shell,
+	sortarray_quick,
 	sortarray_bubble,
 	sortarray_cocktail,
 	sortarray_insertions,
@@ -178,12 +227,14 @@ mintime = test_iterations*arraysize
 for i, SortFunc in enumerate(sorting_algorithmes):
 	case = '\n+++ Case '
 	if i < 11: case += '0'
-	case += str(i+1)+':'
+	case += str(i+1)+":\n"
 	print(case)
 	print("\t\t"+SortFunc.__doc__)
 	# decorate sorting function:
 	tst_case = decor_tst_cases(test_iterations)(SortFunc)
 	result, timetotal = tst_case(rnd)
+	if SortFunc == sortarray_builtin: # 
+		continue
 	if result and timetotal < mintime:
 		TheBestSortingAlgorithm = SortFunc
 		mintime = timetotal

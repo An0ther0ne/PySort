@@ -1,67 +1,88 @@
 # PySort
 Testing perfomance of classic sorting algorithms in Python and built in.
 # Synopsis
-    python SortTest.py
+    python [-O] SortTest.py [[-v]||[-V]]
+Where:
+* -O   : turn DEBUG flag to off
+* -v   : verbose level 1
+* --vv : verbose level 2
+# Explanation
+This program wrap with decorator each sorting algorithm. 
+Decorator runs the specified number of tests for each sorting algorithm, notice result (passed or not) of it and calcuate total elapsed time for all amount of this tests in this case.
+The testing procedure is to check all array elements are sorted in ascending order. Each time after this check an array is randomized again.
+If at least one of test is fail – wrapper skip all following and return the failed state.
+For total time calculation purpose only effective runtime of each successfully completed sorting function counts.
+At the end of all tests, name of the fastest algorithm is determined and displayed.
+For comparison, also shown a total time for built into Python sorting algorithm, but which is not considered in the summary championship result, because it is not implemented by the Python language itself.     
+    
 # Files:
 [SortTest.py](SortTest.py)
 # Requirements
 * Python 3.x
 * NumPy
 # Output
++++ Debug is ON ! To remove DEBUG assert run this script with -O flag: python -O SortTest.py
+
 +++ Case 01:
 
 		This is built in Python sort function
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.020 seconds.
+		Time elapsed: 0.010 seconds.
 
 +++ Case 02:
 
 		Shell sort algorithm -- one of the fastest
 		Author: Donald Lewis Shell
-		Performance: O(nlogn)
+		Performance: O(NlogN)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.030 seconds.
+		Time elapsed: 0.080 seconds.
 
 +++ Case 03:
 
-		Bubble sorting algorithm -- is a simplest of sorting algorithms.
-		Perfomance: O(n**2)
+		Quick sort algorithm -- the fastest, but deep level of recursion needed
+		Performance: O(NlogN), recursion level ~ N
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.280 seconds.
+		Time elapsed: 0.020 seconds.
 
 +++ Case 04:
 
+		Bubble sorting algorithm -- is a simplest of sorting algorithms.
+		Perfomance: O(N**2)
+		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
+		Time elapsed: 1.260 seconds.
+
++++ Case 05:
+
 		Cocktail shaker sorting alogorithm -- improoved bubble sort
-		Perfomance: O(n**2)
+		Perfomance: O(N**2)
 		The sample code was taken from here: https://cutt.ly/qrxDTBr
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
 		Time elapsed: 1.540 seconds.
 
-+++ Case 05:
-
-		Insertion sorting algorithm -- standard realisation
-		Perfomance: O(n**2)
-		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.610 seconds.
-
 +++ Case 06:
 
-		Insertion sorting algorithm -- my custom Python-specific realisation
-		Perfomance: O(n**2)
-		The best performance time among insertions algorithms in python
+		Insertion sorting algorithm -- standard realisation
+		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.130 seconds.
+		Time elapsed: 0.600 seconds.
 
 +++ Case 07:
 
-		Gnome sorting algorithm
-		Perfomance: O(n**2)
+		Insertion sorting algorithm -- my custom Python-specific realisation
+		Perfomance: O(N**2)
+		The best performance time among insertions algorithms in python
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.270 seconds.
+		Time elapsed: 0.140 seconds.
+
++++ Case 08:
+
+		Gnome sorting algorithm
+		Perfomance: O(N**2)
+		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
+		Time elapsed: 1.250 seconds.
 
 +++ S U M A R Y +++
-
-		The best sorting algorithm is 'sortarray_builtin()'
+		The best sorting algorithm is 'sortarray_quick()'
 		With total time=0.020 seconds for array size=500 and 20 iterations.
 		
 # LINKS
