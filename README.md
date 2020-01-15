@@ -1,7 +1,7 @@
 # PySort
 Testing perfomance of classic sorting algorithms in Python.
 # Synopsis
-    python [-O] SortTest.py [[-v]||[-vv]]
+    python [-O] SortTest.py [[-v]|[-vv]]
 Where:
 * -O   : turn DEBUG flag to off
 * -v   : verbose level 1
