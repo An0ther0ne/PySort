@@ -81,7 +81,7 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
 		Time elapsed: 1.260 seconds.
 
-+++ S U M A R Y +++
++++ S U M M A R Y +++
 
 		The best sorting algorithm is 'sortarray_quick()'
 		With total time=0.050 seconds for array size=500 and 20 iterations.
