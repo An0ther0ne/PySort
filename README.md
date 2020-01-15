@@ -21,8 +21,6 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 * Python 3.x
 * NumPy
 # Output
-+++ Debug is ON ! To remove DEBUG assert run this script with -O flag: python -O SortTest.py
-
 +++ Case 01:
 
 		This is built in Python sort function
