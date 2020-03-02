@@ -204,7 +204,7 @@ def decor_tst_cases(iters=10):
 			while i < iters+1 and ret:
 				print(i, end=',', flush=True)
 				# randomized = RandomizeAll(*args)
-				randomized = Randomize(*args, iterations=iters)
+				randomized = Randomize(*args, iters)
 				start = time.time()
 				srted = func(randomized, **kwargs)
 				# ret &= IsSorted(func(Randomize(*args, iters),**kwargs))
