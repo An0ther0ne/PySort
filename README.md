@@ -16,8 +16,8 @@ At the end of all tests, name of the fastest algorithm is determined and display
 For comparison, also shown a total time for built into Python sorting algorithm, but which is not considered in the summary championship result, because it is not implemented by the Python language itself.     
     
 # Files:
-[SortTest.py](SortTest.py)
-[pylint.config](pylint.config) - my PyLint custom configuration file for this project.
+* [SortTest.py](SortTest.py)
+* [pylint.config](pylint.config) - my PyLint custom configuration file for this project.
 
 # Requirements
 * Python 3.x
