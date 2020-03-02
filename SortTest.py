@@ -27,11 +27,11 @@ def sortarray_bubble_enum(A):
 	'''Bubble sorting algorithm -- is a simplest of sorting algorithms. Variant with enumerate() usage.
 		Perfomance: O(N**2)'''
 	B = np.copy(A)
-	for i,Bi in enumerate(B[:-1]):
-		for j,Bj in enumerate(B[i:], start=i):
+	for i, Bi in enumerate(B[:-1]):
+		for j, Bj in enumerate(B[i:], start=i):
 			if B[i] > B[j]:
-				Bi,Bj = B[j],B[i]
-				B[i],B[j] = Bi,Bj
+				Bi, Bj = B[j], B[i]
+				B[i], B[j] = Bi, Bj
 	return B
 # ------------------------------------
 def sortarray_bubble(A):
@@ -41,7 +41,7 @@ def sortarray_bubble(A):
 	for i in range(len(B)-1):
 		for j in range(i, len(B)):
 			if B[i] > B[j]:
-				B[i],B[j] = B[j],B[i]
+				B[i], B[j] = B[j], B[i]
 	return B
 # ------------------------------------
 def sortarray_insertions(A):
@@ -84,7 +84,7 @@ def sortarray_gnome(A):
 			i = j
 			j = j + 1
 		else:
-			B[i-1],B[i] = B[i],B[i-1]
+			B[i-1], B[i] = B[i], B[i-1]
 			i = i - 1
 			if i == 0:
 				i = j
@@ -122,7 +122,7 @@ def sortarray_shell(A):
 		for i in range(gap, L):
 			j = i - gap
 			while (j >= 0) and (B[j] > B[j+gap]):
-				B[j],B[j+gap] = B[j+gap],B[j]
+				B[j], B[j + gap] = B[j + gap], B[j]
 				j -= gap
 		gap >>= 1
 	return B
@@ -132,7 +132,7 @@ def sortarray_quick(A):
 	'''Quick sort algorithm -- the fastest, but deep level of recursion needed
 		Performance: O(NlogN), recursion level ~ N'''
 	B = np.copy(A)
-	L = len(B)-1
+	L = len(B) - 1
 	if __debug__:
 		level = 0
 	def quicksort(first, last):
@@ -150,7 +150,7 @@ def sortarray_quick(A):
 				right -= 1
 			if left <= right:
 				B[left], B[right] = B[right], B[left]
-				left += 1
+				left  += 1
 				right -= 1
 		if first < right:
 			quicksort(first, right)
@@ -166,7 +166,7 @@ def sortarray_quick(A):
 
 def IsSorted(A):
 	for i in range(len(A)-1):
-		if A[i]>A[i+1]:
+		if A[i] > A[i + 1]:
 			return False
 	return True
 
@@ -179,7 +179,7 @@ def Randomize(A, iterations=1):
 		i2 = i1 = np.random.randint(L)
 		while i2 == i1:
 			i2 = np.random.randint(L)
-		B[i1],B[i2] = B[i2],B[i1]
+		B[i1], B[i2] = B[i2], B[i1]
 		iterations -= 1
 	return B
 
@@ -191,7 +191,7 @@ def RandomizeAll(A):
 			j = np.random.randint(L)
 			if i != j:
 				break
-		B[i],B[j] = B[j],B[i]
+		B[i], B[j] = B[j], B[i]
 	return B
 
 def decor_tst_cases(iters=10):
@@ -244,9 +244,9 @@ for i, SortFunc in enumerate(sorting_algorithmes):
 	case = '\n+++ Case '
 	if i < 11:
 		case += '0'
-	case += str(i+1)+":\n"
+	case += str(i + 1) + ":\n"
 	print(case)
-	print("\t\t"+SortFunc.__doc__)
+	print("\t\t" + SortFunc.__doc__)
 	# decorate sorting function:
 	tst_case = decor_tst_cases(test_iterations)(SortFunc)
 	result, timetotal = tst_case(rnd)
@@ -257,4 +257,4 @@ for i, SortFunc in enumerate(sorting_algorithmes):
 		mintime = timetotal
 
 print("\n+++ S U M M A R Y +++\n")
-print("\t\tThe best sorting algorithm is '"+TheBestSortingAlgorithm.__name__+"()'\n\t\tWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
+print("\t\tThe best sorting algorithm is '" + TheBestSortingAlgorithm.__name__ + "()'\n\t\tWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
