@@ -195,7 +195,6 @@ def RandomizeAll(A):
 	return B
 
 def decor_tst_cases(iters=10):
-	# print(iters.__name__, flush=True)
 	def decorator(func):
 		def wrapper(*args, **kwargs):
 			print("\t\tSorting tests : ", end='', flush=True)
