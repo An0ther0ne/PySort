@@ -17,6 +17,8 @@ For comparison, also shown a total time for built into Python sorting algorithm,
     
 # Files:
 [SortTest.py](SortTest.py)
+[pylint.config](pylint.config) - my PyLint custom configuration file for this project.
+
 # Requirements
 * Python 3.x
 * NumPy
@@ -25,7 +27,7 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 
 		This is built in Python sort function
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.010 seconds.
+		Time elapsed: 0.003 seconds.
 
 +++ Case 02:
 
@@ -33,56 +35,63 @@ For comparison, also shown a total time for built into Python sorting algorithm,
 		Author: Donald Lewis Shell
 		Performance: O(NlogN)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.060 seconds.
+		Time elapsed: 0.089 seconds.
 
 +++ Case 03:
 
 		Quick sort algorithm -- the fastest, but deep level of recursion needed
 		Performance: O(NlogN), recursion level ~ N
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.050 seconds.
+		Time elapsed: 0.052 seconds.
 
 +++ Case 04:
 
-		Bubble sorting algorithm -- is a simplest of sorting algorithms.
+		Bubble sorting algorithm -- is a simplest of sorting algorithms. Classic variant.
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.280 seconds.
+		Time elapsed: 1.321 seconds.
 
 +++ Case 05:
+
+		Bubble sorting algorithm -- is a simplest of sorting algorithms. Variant with enumerate() usage.
+		Perfomance: O(N**2)
+		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
+		Time elapsed: 1.810 seconds.
+
++++ Case 06:
 
 		Cocktail shaker sorting alogorithm -- improoved bubble sort
 		Perfomance: O(N**2)
 		The sample code was taken from here: https://cutt.ly/qrxDTBr
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.570 seconds.
+		Time elapsed: 1.594 seconds.
 
-+++ Case 06:
++++ Case 07:
 
 		Insertion sorting algorithm -- standard realisation
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.610 seconds.
+		Time elapsed: 0.608 seconds.
 
-+++ Case 07:
++++ Case 08:
 
 		Insertion sorting algorithm -- my custom Python-specific realisation
 		Perfomance: O(N**2)
 		The best performance time among insertions algorithms in python
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 0.120 seconds.
+		Time elapsed: 0.127 seconds.
 
-+++ Case 08:
++++ Case 09:
 
 		Gnome sorting algorithm
 		Perfomance: O(N**2)
 		Sorting tests : 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, Passed.
-		Time elapsed: 1.260 seconds.
+		Time elapsed: 1.284 seconds.
 
 +++ S U M M A R Y +++
 
 		The best sorting algorithm is 'sortarray_quick()'
-		With total time=0.050 seconds for array size=500 and 20 iterations.
+		With total time=0.052 seconds for array size=500 and 20 iterations.
 		
 # LINKS
 1. [DONALD E. KNUTH "The Art Of Computer Programming, Volume 3: Sorting and Searching."](https://linuxnasm.be/media/pdf/donald-knuth/taocp/volume-3/taocp-vol3-sorting-searching.pdf)

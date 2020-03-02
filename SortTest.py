@@ -1,11 +1,12 @@
-import numpy as np
+#-*- coding: utf-8 -*-
 import time
+import numpy as np
 
 # ==================================== Parse command line (only in debug mode)
 if __debug__:
 	import sys
 	print("+++ Debug is ON ! To remove DEBUG assert run this script with -O flag: python -O "+sys.argv[0])
-	__verbose__ = 0	
+	__verbose__ = 0
 	if __verbose__ > 0:
 		print("Verbose level={}".format(__verbose__))
 	if len(sys.argv) > 1:
@@ -22,18 +23,28 @@ def sortarray_builtin(A):
 	return sorted(np.copy(A))
 
 # ------------------------------------
-def sortarray_bubble(A):
-	'''Bubble sorting algorithm -- is a simplest of sorting algorithms.
-		Perfomance: O(N**2)''' 
+def sortarray_bubble_enum(A):
+	'''Bubble sorting algorithm -- is a simplest of sorting algorithms. Variant with enumerate() usage.
+		Perfomance: O(N**2)'''
 	B = np.copy(A)
-	for i in range(len(A)-1):
-		for j in range(i,len(A)):
+	for i,Bi in enumerate(B[:-1]):
+		for j,Bj in enumerate(B[i:], start=i):
+			if B[i] > B[j]:
+				Bi,Bj = B[j],B[i]
+				B[i],B[j] = Bi,Bj
+	return B
+# ------------------------------------
+def sortarray_bubble(A):
+	'''Bubble sorting algorithm -- is a simplest of sorting algorithms. Classic variant.
+		Perfomance: O(N**2)'''
+	B = np.copy(A)
+	for i in range(len(B)-1):
+		for j in range(i, len(B)):
 			if B[i] > B[j]:
 				B[i],B[j] = B[j],B[i]
 	return B
-
-# ------------------------------------	
-def sortarray_insertions(A):	
+# ------------------------------------
+def sortarray_insertions(A):
 	'''Insertion sorting algorithm -- standard realisation
 		Perfomance: O(N**2)'''
 	B = np.copy(A)
@@ -44,22 +55,22 @@ def sortarray_insertions(A):
 			B[j+1] = B[j]
 			j -=1
 		B[j+1] = k
-	return B	
+	return B
 
 # ------------------------------------
-def sortarray_insertions_my(A):	
+def sortarray_insertions_my(A):
 	'''Insertion sorting algorithm -- my custom Python-specific realisation
 		Perfomance: O(N**2)
 		The best performance time among insertions algorithms in python'''
 	B = []
-	for i in range(len(A)):
-		k = A[i]
+	for i,k in enumerate(A):
 		j = i - 1
 		while j >= 0:
-			if B[j] < k: break
+			if B[j] < k:
+				break
 			j -= 1
 		B.insert(j+1, k)
-	return B	
+	return B
 
 # -------------------------------------
 def sortarray_gnome(A):
@@ -79,7 +90,7 @@ def sortarray_gnome(A):
 				i = j
 				j = j + 1
 	return B
-	
+
 # -------------------------------------
 def sortarray_cocktail(A):
 	'''Cocktail shaker sorting alogorithm -- improoved bubble sort
@@ -122,12 +133,14 @@ def sortarray_quick(A):
 		Performance: O(NlogN), recursion level ~ N'''
 	B = np.copy(A)
 	L = len(B)-1
-	if __debug__: level = 0
+	if __debug__:
+		level = 0
 	def quicksort(first, last):
 		if __debug__:
 			nonlocal level
 			level += 1
-			print("+++ debug : RLev={:3}, first={:3}, last={:3}".format(level, first, last)) if __verbose__ > 1 else 0
+			if __verbose__ > 1:
+				print("+++ debug : RLev={:3}, first={:3}, last={:3}".format(level, first, last))
 		left, right = first, last
 		v = B[(left+right) >> 1]
 		while left < right:
@@ -143,13 +156,14 @@ def sortarray_quick(A):
 			quicksort(first, right)
 		if left < last:
 			quicksort(left, last)
-		return
 	quicksort(0, L)
 	if __debug__:
-		if __verbose__ > 0: print("Recursion level reached :", level) 
+		if __verbose__ > 0:
+			print("Recursion level reached :", level)
 	return B
-	
-# ============= Testing functions and decorators 
+
+# ============= Testing functions and decorators
+
 def IsSorted(A):
 	for i in range(len(A)-1):
 		if A[i]>A[i+1]:
@@ -159,22 +173,24 @@ def IsSorted(A):
 def Randomize(A, iterations=1):
 	L = len(A)
 	if L < 2:
-		return
+		return None
 	B = np.copy(A)
-	for i in range(iterations):
+	while iterations > 0:
 		i2 = i1 = np.random.randint(L)
 		while i2 == i1:
 			i2 = np.random.randint(L)
 		B[i1],B[i2] = B[i2],B[i1]
+		iterations -= 1
 	return B
-	
+
 def RandomizeAll(A):
 	B = np.copy(A)
 	L = len(B)
 	for i in range(L):
 		while True:
 			j = np.random.randint(L)
-			if i != j: break
+			if i != j:
+				break
 		B[i],B[j] = B[j],B[i]
 	return B
 
@@ -191,10 +207,10 @@ def decor_tst_cases(iters=10):
 				# randomized = RandomizeAll(*args)
 				randomized = Randomize(*args, iterations=iters)
 				start = time.time()
-				sorted = func(randomized, **kwargs)
-				# ret &= IsSorted(func(Randomize(*args, iters),**kwargs))				
+				srted = func(randomized, **kwargs)
+				# ret &= IsSorted(func(Randomize(*args, iters),**kwargs))
 				end = time.time()
-				ret &= IsSorted(sorted)
+				ret &= IsSorted(srted)
 				total += (end - start)
 				i += 1
 			if ret:
@@ -202,7 +218,7 @@ def decor_tst_cases(iters=10):
 			else:
 				print(" Failed!!!")
 			print("\t\tTime elapsed: {:.3f} seconds.".format(total))
-			return ret, total,
+			return ret, total
 		return wrapper
 	return decorator
 
@@ -213,6 +229,7 @@ sorting_algorithmes = [
 	sortarray_shell,
 	sortarray_quick,
 	sortarray_bubble,
+	sortarray_bubble_enum,
 	sortarray_cocktail,
 	sortarray_insertions,
 	sortarray_insertions_my,
@@ -226,19 +243,19 @@ rnd = np.random.randint(arraysize, size=arraysize)
 mintime = test_iterations*arraysize
 for i, SortFunc in enumerate(sorting_algorithmes):
 	case = '\n+++ Case '
-	if i < 11: case += '0'
+	if i < 11:
+		case += '0'
 	case += str(i+1)+":\n"
 	print(case)
 	print("\t\t"+SortFunc.__doc__)
 	# decorate sorting function:
 	tst_case = decor_tst_cases(test_iterations)(SortFunc)
 	result, timetotal = tst_case(rnd)
-	if SortFunc == sortarray_builtin: # 
+	if SortFunc == sortarray_builtin:
 		continue
 	if result and timetotal < mintime:
 		TheBestSortingAlgorithm = SortFunc
 		mintime = timetotal
-	
+
 print("\n+++ S U M M A R Y +++\n")
 print("\t\tThe best sorting algorithm is '"+TheBestSortingAlgorithm.__name__+"()'\n\t\tWith total time={:.3f} seconds for array size={} and {} iterations.".format(mintime, arraysize, test_iterations))
-
